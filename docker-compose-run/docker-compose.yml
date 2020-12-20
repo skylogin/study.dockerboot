@@ -1,0 +1,21 @@
+version: '3.3'
+services:
+  app1:
+    image: springboot
+    ports:
+      - 8080:8080
+    container_name: app1
+    networks:
+      - mynetwork
+  mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - TZ=Asia/Seoul
+    container_name: mysql
+    ports:
+      - 3306:3306
+    networks:
+      - mynetwork
+networks:
+  mynetwork:

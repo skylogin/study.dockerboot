@@ -1,0 +1,11 @@
+# 의존성 설치
+sudo apt install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
+sudo apt update -y
+
+# 도커설치
+sudo apt install -y docker-ce=18.06.3~ce~3-0~debian
+
+# 관리자계정에서 설치해준 내용에 대해 일반유저에게 권한을 추가해줌
+sudo usermod -aG docker $USER
