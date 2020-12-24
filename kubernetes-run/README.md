@@ -167,5 +167,5 @@ kubectl get pv
 kubectl get pvc
 
 
-# run mysql
-kubectl run -it --rm --image=mysql:5.6 --restart=Never mysql-client -- mysql -h mysql -ppassword
+# run mysql (서비스가 있어야 mysql 호스트를 찾을 수 있음.)
+kubectl run -it --rm --image=mysql:5.6 --restart=Never mysql-client -- mysql -h mysql -p1234
