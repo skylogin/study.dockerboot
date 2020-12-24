@@ -85,3 +85,87 @@ kubectl delete pod nginx-app
 
 # delete service
 kubectl delete svc nginx-app
+
+
+
+# show namespace
+kubectl get namespace
+
+# run create namespace
+kubectl appliy -f namespace.yaml
+
+# run nginx using namespace
+kubectl run nginx --image=nginx --namespace=team1
+
+# show pod with namespace
+kubectl get pod -n team1
+
+# delete pod with namespace
+kubectl delete pod nginx -n team1
+
+# delete namespace
+kubectl delete namespace team1
+
+
+# run pod
+kubectl apply -f pod.yaml
+
+# view pod
+kubectl describe pod nodejs-app
+
+
+# show replicaset
+kubectl get replicaset
+kubectl get rs
+
+# show deployment
+kubectl get deployment
+
+
+# rollout
+kubectl rollout status deployment.apps/nodejs-app
+
+# show rollout history
+kubectl rollout history deployment.apps/nodejs-app
+
+# write CHANGE-CAUSE in rollout history
+kubectl annotate deployment.apps/nodejs-app kubernetes.io/change-cause="image updated to latest"
+
+# undo rollout
+kubectl rollout undo deployment.apps/nodejs-app
+
+# undo rollout with revision
+kubectl rollout undo deployement.apps/nodejs-app --to-revision=2
+
+
+# expose deployment
+kubectl expose deploy nodejs-app
+
+# expose deployment external 
+kubectl expose deploy nodejs-app --type=NodePort
+
+# show service 
+kubectl get svc nodejs-app
+
+# delete expose(service)
+kubectl delete svc nodejs-app
+
+
+
+
+# install ingress (nginx)
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.29.0/deploy/static/mandatory.yaml
+
+# expose ingress
+kubectl expose deploy nginx-ingress-controller --type=NodePort -n ingress-nginx
+
+
+# show persistent volume
+kubectl get pv
+
+# show persistent volume claim
+kubectl get pvc
+
+
+# run mysql
+kubectl run -it --rm --image=mysql:5.6 --restart=Never mysql-client -- mysql -h mysql -ppassword
