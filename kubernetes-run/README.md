@@ -34,7 +34,7 @@ sudo kubeadm init
 #    --discovery-token-ca-cert-hash sha256:187069ace2f7a4e302d60067ce8c360e0f033bb53252edbcf5dd408ac08aca7d 
 
 # 토큰 재발급 (유효시간 24시간)
-kubeadm toke create --print-join-command
+kubeadm token create --print-join-command
 
 # kubectl 명령문 사용할 수 있게 하기
 mkdir -p $HOME/.kube
@@ -169,3 +169,31 @@ kubectl get pvc
 
 # run mysql (서비스가 있어야 mysql 호스트를 찾을 수 있음.)
 kubectl run -it --rm --image=mysql:5.6 --restart=Never mysql-client -- mysql -h mysql -p1234
+
+
+
+
+# install calico network
+kubectl apply -f https://docs.projectcalico.org/v3.11/manifests/calico.yaml
+
+
+# create configmap
+kubectl create configmap hello-config --from-literal=language=javascript
+
+# get configmap
+kubectl get configmap hello-config
+
+# describe configmap
+kubectl describe configmap hello-config
+
+# create secret (only file or yaml)
+kubectl create secret generic hello-secret --from-file=./language
+
+# get secret
+kubectl get secret
+
+# get secret yaml (encoded base64)
+kubectl get secret hello-secret -o yaml
+
+# describe secret
+kubectl describe secret hello-secret
